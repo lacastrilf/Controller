@@ -1,0 +1,67 @@
+modes:
+  "1":
+    metric: response_time
+    interval_seconds: 30
+    threshold_high: 500
+    threshold_low: 200
+    min_capacity: 1
+    max_capacity: 5
+    techniques: {}
+
+  "2.1":
+    metric: cpu
+    interval_seconds: 30
+    threshold_high: 70
+    threshold_low: 30
+    min_capacity: 1
+    max_capacity: 5
+    techniques:
+      moving_average:
+        window: 5
+      autoregression:
+        lag: 3
+      proportional_thresholding: true
+
+  "2.2":
+    metric: memory
+    interval_seconds: 30
+    threshold_high: 75
+    threshold_low: 35
+    min_capacity: 1
+    max_capacity: 5
+    techniques:
+      moving_average:
+        window: 5
+      autoregression:
+        lag: 3
+      proportional_thresholding: true
+
+  "2.3":
+    metric: cpu
+    interval_seconds: 30
+    threshold_high: 70
+    threshold_low: 30
+    min_capacity: 1
+    max_capacity: 5
+    techniques:
+      pattern_matching:
+        window: 10
+
+  "3":
+    interval_seconds: 15
+    min_capacity: 1
+    max_capacity: 5
+    metrics:
+      - name: queue_length
+        role: primary
+        threshold_high: 20
+        threshold_low: 5
+      - name: cpu
+        role: supporting
+        threshold_high: 70
+        threshold_low: 30
+      - name: memory
+        role: supporting
+        threshold_high: 75
+        threshold_low: 35
+    techniques: {}
