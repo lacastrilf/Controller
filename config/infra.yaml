@@ -1,0 +1,32 @@
+vpc:
+  vpc_id: vpc-xxxxxxxx
+  region: us-east-1
+
+subnets:
+  public: subnet-xxxxxxxx
+  private_controller: subnet-xxxxxxxx
+  application: subnet-xxxxxxxx
+  server: subnet-xxxxxxxx
+  microserver: subnet-xxxxxxxx
+
+ec2:
+  application:
+    ami_id: ami-xxxxxxxx
+    instance_type: t3.micro
+    key_name: mi-key-pair
+    security_group_id: sg-xxxxxxxx
+  server:
+    ami_id: ami-yyyyyyyy
+    instance_type: t3.micro
+    key_name: mi-key-pair
+    security_group_id: sg-xxxxxxxx
+
+load_balancer:
+  application_target_group_arn: arn:aws:elasticloadbalancing:...
+  server_target_group_arn: arn:aws:elasticloadbalancing:...
+
+kubernetes:
+  kubeconfig_path: /ruta/al/kubeconfig
+  namespace: default
+  deployment_name: microserver-app
+  node_port: 30080
