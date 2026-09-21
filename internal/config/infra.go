@@ -14,11 +14,11 @@ type VPCConfig struct {
 }
 
 type SubnetsConfig struct {
-	Public            string `yaml:"public"`
-	PrivateController string `yaml:"private_controller"`
-	Application       string `yaml:"application"`
-	Server            string `yaml:"server"`
-	Microserver       string `yaml:"microserver"`
+	Public            []string `yaml:"public"`
+	PrivateController string   `yaml:"private_controller"`
+	Application       []string `yaml:"application"`
+	Server            []string `yaml:"server"`
+	Microserver       string   `yaml:"microserver"`
 }
 
 type EC2Config struct {

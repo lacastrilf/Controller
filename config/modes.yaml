@@ -23,8 +23,8 @@ modes:
       moving_average:
         window: 5
       autoregression:
-        lag: 3
-      proportional_thresholding: true
+        window: 3
+      proportional_thresholding: 20
 
   "2.2":
     interval_seconds: 30
@@ -40,7 +40,7 @@ modes:
         window: 5
       autoregression:
         lag: 3
-      proportional_thresholding: true
+      proportional_thresholding: 20
 
   "2.3":
     interval_seconds: 30

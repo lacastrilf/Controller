@@ -3,11 +3,17 @@ vpc:
   region: us-east-1
 
 subnets:
-  public: subnet-xxxxxxxx
-  private_controller: subnet-xxxxxxxx
-  application: subnet-xxxxxxxx
-  server: subnet-xxxxxxxx
-  microserver: subnet-xxxxxxxx
+  public:
+    - subnet-pub-az1
+    - subnet-pub-az2
+  private_controller: subnet-admin-xxxx
+  application:
+    - subnet-app-az1
+    - subnet-app-az2
+  server:
+    - subnet-srv-az1
+    - subnet-srv-az2
+  microserver: subnet-micro-xxxx
 
 ec2:
   application:

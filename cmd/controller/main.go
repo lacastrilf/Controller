@@ -1,10 +1,9 @@
 package main
 
 import (
-	"fmt"
-
 	"controller/internal/config"
 	"controller/internal/utils"
+	"fmt"
 )
 
 func main() {
