@@ -18,7 +18,6 @@ type ModeConfig struct {
 
 type MetricConfig struct {
 	Name          string  `yaml:"name"`
-	Role          string  `yaml:"role"`
 	ThresholdHigh float64 `yaml:"threshold_high"`
 	ThresholdLow  float64 `yaml:"threshold_low"`
 }

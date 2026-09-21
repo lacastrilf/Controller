@@ -1,8 +1,8 @@
 package techniques
 
-import "controller/internal/metrics"
+import "controller/internal/collector"
 
-func PatternMatching(samples []metrics.Sample, window int) float64 {
+func PatternMatching(samples []collector.Sample, window int) float64 {
 	if len(samples) < window*2+1 {
 		return recentAverage(samples, window)
 	}
@@ -25,7 +25,7 @@ func PatternMatching(samples []metrics.Sample, window int) float64 {
 	return bestNextValue
 }
 
-func totalDifference(a, b []metrics.Sample) float64 {
+func totalDifference(a, b []collector.Sample) float64 {
 	total := 0.0
 	for i := range a {
 		diff := a[i].Value - b[i].Value
@@ -37,7 +37,7 @@ func totalDifference(a, b []metrics.Sample) float64 {
 	return total
 }
 
-func recentAverage(samples []metrics.Sample, window int) float64 {
+func recentAverage(samples []collector.Sample, window int) float64 {
 	recent := recentSamples(samples, window)
 	if len(recent) == 0 {
 		return 0

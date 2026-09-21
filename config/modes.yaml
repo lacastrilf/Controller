@@ -55,7 +55,7 @@ modes:
       pattern_matching:
         window: 10
 
-  "3":
+  "3.1":
     interval_seconds: 15
     min_capacity: 1
     max_capacity: 5
@@ -64,12 +64,26 @@ modes:
         role: primary
         threshold_high: 20
         threshold_low: 5
+    techniques: {}
+
+  "3.2":
+    interval_seconds: 15
+    min_capacity: 1
+    max_capacity: 5
+    metrics:
       - name: cpu
-        role: supporting
+        role: primary
         threshold_high: 70
         threshold_low: 30
+    techniques: {}
+
+  "3.3":
+    interval_seconds: 15
+    min_capacity: 1
+    max_capacity: 5
+    metrics:
       - name: memory
-        role: supporting
+        role: primary
         threshold_high: 75
         threshold_low: 35
     techniques: {}

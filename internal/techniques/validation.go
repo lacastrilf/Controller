@@ -1,8 +1,8 @@
 package techniques
 
-import "controller/internal/metrics"
+import "controller/internal/collector"
 
-func recentSamples(samples []metrics.Sample, window int) []metrics.Sample {
+func recentSamples(samples []collector.Sample, window int) []collector.Sample {
 	if len(samples) == 0 {
 		return samples
 	}

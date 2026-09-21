@@ -1,4 +1,4 @@
-package metrics
+package collector
 
 import (
 	"context"
@@ -10,6 +10,6 @@ type Sample struct {
 	Value     float64
 }
 
-type MetricsProvider interface {
+type Provider interface {
 	GetMetric(ctx context.Context, resourceIDs []string, metricName string) ([]Sample, error)
 }

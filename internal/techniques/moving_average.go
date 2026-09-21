@@ -1,8 +1,8 @@
 package techniques
 
-import "controller/internal/metrics"
+import "controller/internal/collector"
 
-func MovingAverage(samples []metrics.Sample, window int) float64 {
+func MovingAverage(samples []collector.Sample, window int) float64 {
 	recent := recentSamples(samples, window)
 
 	sum := 0.0

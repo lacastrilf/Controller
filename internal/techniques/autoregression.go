@@ -1,8 +1,8 @@
 package techniques
 
-import "controller/internal/metrics"
+import "controller/internal/collector"
 
-func Autoregression(samples []metrics.Sample, window int) float64 {
+func Autoregression(samples []collector.Sample, window int) float64 {
 	recent := recentSamples(samples, window)
 	n := len(recent)
 
