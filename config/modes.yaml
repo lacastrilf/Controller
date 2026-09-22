@@ -1,5 +1,6 @@
 modes:
   "1":
+    tier: application
     interval_seconds: 30
     min_capacity: 1
     max_capacity: 5
@@ -11,14 +12,16 @@ modes:
     techniques: {}
 
   "2.1":
+    tier: server
     interval_seconds: 30
+    cooldown_seconds: 300 # CloudWatch EC2 basic monitoring only publishes every 5 min
     min_capacity: 1
     max_capacity: 5
     metrics:
       - name: cpu
         role: primary
-        threshold_high: 70
-        threshold_low: 30
+        threshold_high: 0.3
+        threshold_low: 0.1
     techniques:
       moving_average:
         window: 5
@@ -27,6 +30,7 @@ modes:
       proportional_thresholding: 20
 
   "2.2":
+    tier: server
     interval_seconds: 30
     min_capacity: 1
     max_capacity: 5
@@ -39,10 +43,11 @@ modes:
       moving_average:
         window: 5
       autoregression:
-        lag: 3
+        window: 3
       proportional_thresholding: 20
 
   "2.3":
+    tier: server
     interval_seconds: 30
     min_capacity: 1
     max_capacity: 5
@@ -56,6 +61,7 @@ modes:
         window: 10
 
   "3.1":
+    tier: microserver
     interval_seconds: 15
     min_capacity: 1
     max_capacity: 5
@@ -67,6 +73,7 @@ modes:
     techniques: {}
 
   "3.2":
+    tier: microserver
     interval_seconds: 15
     min_capacity: 1
     max_capacity: 5
@@ -78,6 +85,7 @@ modes:
     techniques: {}
 
   "3.3":
+    tier: microserver
     interval_seconds: 15
     min_capacity: 1
     max_capacity: 5

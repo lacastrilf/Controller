@@ -6,52 +6,40 @@ import (
 	"io"
 	"sync"
 	"time"
+
+	"controller/internal/evaluator"
 )
-
-type Decision int
-
-const (
-	MaintainCapacity Decision = iota
-	IncreaseCapacity
-	ReduceCapacity
-)
-
-func (d Decision) String() string {
-	switch d {
-	case IncreaseCapacity:
-		return "INCREASE_CAPACITY"
-	case ReduceCapacity:
-		return "REDUCE_CAPACITY"
-	default:
-		return "MAINTAIN_CAPACITY"
-	}
-}
 
 type MetricObservation struct {
 	Name  string  `json:"name"`
 	Value float64 `json:"value"`
 }
-
 type Record struct {
 	Timestamp        time.Time           `json:"timestamp"`
 	Mode             string              `json:"mode"`
 	Metrics          []MetricObservation `json:"metrics"`
 	ExistingCapacity int                 `json:"existing_capacity"`
-	Decision         Decision            `json:"decision"`
+	Decision         evaluator.Decision  `json:"decision"`
 	Justification    string              `json:"justification"`
 	ActionResult     string              `json:"action_result"`
 }
 
+// Logger writes Records to one or more destinations (e.g. the terminal
+// and a file), safely across multiple goroutines.
 type Logger struct {
 	mu      sync.Mutex
 	console io.Writer
 	file    io.Writer
 }
 
+// New creates a Logger that writes human-readable lines to `console`
+// and JSON Lines to `file`.
 func New(console io.Writer, file io.Writer) *Logger {
 	return &Logger{console: console, file: file}
 }
 
+// Log writes a Record to both destinations. It's safe to call from
+// multiple goroutines at once.
 func (l *Logger) Log(r Record) {
 	l.mu.Lock()
 	defer l.mu.Unlock()

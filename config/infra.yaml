@@ -1,35 +1,39 @@
 vpc:
-  vpc_id: vpc-xxxxxxxx
+  vpc_id: vpc-0e12bf0a6c0dd5aa5
   region: us-east-1
 
-subnets:
-  public:
-    - subnet-pub-az1
-    - subnet-pub-az2
-  private_controller: subnet-admin-xxxx
-  application:
-    - subnet-app-az1
-    - subnet-app-az2
-  server:
-    - subnet-srv-az1
-    - subnet-srv-az2
-  microserver: subnet-micro-xxxx
+public_subnet:
+  - subnet-077bdac4b9cdb9e53
+  - subnet-06efe4e4d388df726
 
-ec2:
-  application:
-    ami_id: ami-xxxxxxxx
-    instance_type: t3.micro
-    key_name: mi-key-pair
-    security_group_id: sg-xxxxxxxx
-  server:
-    ami_id: ami-yyyyyyyy
-    instance_type: t3.micro
-    key_name: mi-key-pair
-    security_group_id: sg-xxxxxxxx
+admin_subnet: subnet-0922411b3e485818f
 
-load_balancer:
-  application_target_group_arn: arn:aws:elasticloadbalancing:...
-  server_target_group_arn: arn:aws:elasticloadbalancing:...
+tiers:
+  application:
+    subnets:
+      - subnet-001b91b6ccdebf17c
+      - subnet-0261a65ae36c6fac4
+    ami_id: ami-0627f58a1779f0d79
+    instance_type: t3.micro
+    key_name: ec-key   
+    security_group_id: sg-0e330bda409c8e46c
+    target_group_arn: arn:aws:elasticloadbalancing:us-east-1:458462102177:targetgroup/tg-application/b236c0ffa3f85dae
+    load_balancer_arn:  arn:aws:elasticloadbalancing:us-east-1:458462102177:loadbalancer/app/lb-public/5cf60dcc1a919849
+
+  server:
+    subnets:
+      - subnet-074413445aaa419a1
+      - subnet-073672a0d0109f293
+    ami_id: ami-08e11a6cae7487e8f
+    instance_type: t3.micro
+    key_name: ec-key   
+    security_group_id: sg-06d7a3ac41f6dde8a
+    target_group_arn: arn:aws:elasticloadbalancing:us-east-1:458462102177:targetgroup/tg-server/ad7d869c890cb987
+    load_balancer_arn: arn:aws:elasticloadbalancing:us-east-1:458462102177:loadbalancer/app/lb-internal/e4c2b00180e8e59d
+
+  microserver:
+    subnets:
+      - subnet-05c81740e76451340
 
 kubernetes:
   kubeconfig_path: /ruta/al/kubeconfig

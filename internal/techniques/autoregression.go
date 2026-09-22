@@ -6,6 +6,9 @@ func Autoregression(samples []collector.Sample, window int) float64 {
 	recent := recentSamples(samples, window)
 	n := len(recent)
 
+	if n == 0 {
+		return 0
+	}
 	if n < 2 {
 		return recent[n-1].Value
 	}
